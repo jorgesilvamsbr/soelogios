@@ -1,0 +1,40 @@
+<ion-card *ngFor="let avaliacao of avaliacoes">
+
+  <img src="https://consultoradealimentos.com.br/wp-content/uploads/2016/10/austin-taco-food-truck-fort-collins1.jpg">
+  <ion-fab left top>
+    <button ion-fab><ion-icon name="navigate"></ion-icon></button>
+  </ion-fab>
+
+  <ion-item>
+    <ion-avatar item-start>
+      <img src="https://scontent.fcgr1-1.fna.fbcdn.net/v/t1.0-1/p160x160/13267736_1072426699483594_8589231699411749167_n.jpg?oh=b2451f9d0241fe904f6f35729aa78678&oe=59D7D571">
+    </ion-avatar>
+    <h2>{{avaliacao.nomeDoUsuario}}</h2>
+    <h3>{{avaliacao.nomeDaEmpresa}}</h3>
+    <p>{{avaliacao.enderecoCompletoDaEmpresa}}</p>
+  </ion-item>
+
+  <ion-card-content>
+    <p>{{avaliacao.descricao}}</p>
+  </ion-card-content>
+
+  <ion-row>
+    <ion-col>
+      <button ion-button icon-left clear small>
+        <ion-icon name="thumbs-up"></ion-icon>
+        <div>{{avaliacao.curtidas}} Likes</div>
+      </button>
+    </ion-col>
+    <ion-col>
+      <button ion-button icon-left clear small>
+      <ion-icon name="text"></ion-icon>
+      1 Comentários
+    </button>
+    </ion-col>
+    <ion-col icon-left clear small>
+      <ion-note text-center>
+        11h ago
+      </ion-note>
+    </ion-col>
+  </ion-row>
+</ion-card>
