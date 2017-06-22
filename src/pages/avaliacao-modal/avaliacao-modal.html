@@ -1,32 +1,38 @@
 <ion-header>
-    <ion-toolbar>
-        <ion-title>
-            Description
-        </ion-title>
-        <ion-buttons start>
-            <button ion-button (click)="fechar()">
+  <ion-toolbar>
+    <ion-title>
+      Avaliação
+    </ion-title>
+    <ion-buttons start>
+      <button ion-button (click)="fechar()">
         <span ion-text color="primary" showWhen="ios">Cancel</span>
         <ion-icon name="md-close" showWhen="android,windows"></ion-icon>
       </button>
-        </ion-buttons>
-    </ion-toolbar>
+    </ion-buttons>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content>
-    <ion-list>
-        <ion-item>
-            <ion-avatar item-start>
-                <img src="imagem">
-            </ion-avatar>
-            <h2>nome do personagem</h2>
-            <p>informaçoes do persongem</p>
-        </ion-item>
+  <ion-item>
+     <ion-label>Locais</ion-label>
+      <ion-select [(ngModel)]="locais[0].name">
+        <ion-option *ngFor="let local of locais" [value]="local.id">{{local.name}}</ion-option>
+      </ion-select>
+  </ion-item>
 
-        <ion-item >
-            titulo
-            <ion-note item-end>
-                nota
-            </ion-note>
-        </ion-item>
-    </ion-list>
+  <ion-item>
+    <ion-label floating>Digite aqui a descrição de sua avaliação</ion-label>
+    <ion-textarea item-height="10"></ion-textarea>
+  </ion-item>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col col-auto>
+        <button ion-button color="secundary" (click)="fechar()" outline>desistir</button>
+      </ion-col>
+      <ion-col col-auto>
+        <button ion-button color="primary" (click)="adicionaAvaliacao()">avaliar</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
