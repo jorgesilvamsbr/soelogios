@@ -4,7 +4,6 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { HttpModule } from '@angular/http';
-import { BackgroundGeolocation } from '@ionic-native/background-geolocation';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -14,6 +13,8 @@ import { EmpresaServico } from '../components/servicos/empresaServico';
 import { GeolocalizacaoServico } from '../components/servicos/geolocalizacaoServico';
 import { BotaoAdicionaAvaliacaoComponent } from '../components/botao-adiciona-avaliacao/botao-adiciona-avaliacao';
 import { AvaliacaoModalPage } from '../pages/avaliacao-modal/avaliacao-modal';
+import { LoadingUtil } from '../components/util/loadingUtil';
+
 
 @NgModule({
   declarations: [
@@ -21,7 +22,7 @@ import { AvaliacaoModalPage } from '../pages/avaliacao-modal/avaliacao-modal';
     HomePage,
     AvaliacoesComponent,
     BotaoAdicionaAvaliacaoComponent,
-    AvaliacaoModalPage
+    AvaliacaoModalPage,
   ],
   imports: [
     BrowserModule,
@@ -40,7 +41,7 @@ import { AvaliacaoModalPage } from '../pages/avaliacao-modal/avaliacao-modal';
     AvaliacaoServico,
     EmpresaServico,
     GeolocalizacaoServico,
-    BackgroundGeolocation,
+    LoadingUtil,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

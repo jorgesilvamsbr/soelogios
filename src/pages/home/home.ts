@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
-import { BotaoAdicionaAvaliacaoComponent } from '../../components/botao-adiciona-avaliacao/botao-adiciona-avaliacao';
 import { GeolocalizacaoServico } from '../../components/servicos/geolocalizacaoServico';
 
 @Component({
@@ -14,7 +13,5 @@ export class HomePage {
     public navCtrl: NavController,
     public geolocalizacaoServico: GeolocalizacaoServico
   ) {
-    this.geolocalizacaoServico.ativarEspiao();
-    this.geolocalizacaoServico.sondarLocais();
   }
 }
