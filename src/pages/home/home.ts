@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { NavController, ModalController } from 'ionic-angular';
+import { NavController } from 'ionic-angular';
 
 import { BotaoAdicionaAvaliacaoComponent } from '../../components/botao-adiciona-avaliacao/botao-adiciona-avaliacao';
+import { GeolocalizacaoServico } from '../../components/servicos/geolocalizacaoServico';
 
 @Component({
   selector: 'page-home',
@@ -11,6 +12,8 @@ export class HomePage {
 
   constructor(
     public navCtrl: NavController,
-    public modalController: ModalController
-  ) {}
+    public geolocalizacaoServico: GeolocalizacaoServico
+  ) {
+    this.geolocalizacaoServico.ativarEspiao();
+  }
 }

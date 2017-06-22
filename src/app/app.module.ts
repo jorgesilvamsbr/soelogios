@@ -9,6 +9,8 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { AvaliacoesComponent } from '../components/avaliacoes/avaliacoes';
 import { AvaliacaoServico } from '../components/servicos/avaliacaoServico';
+import { EmpresaServico } from '../components/servicos/empresaServico';
+import { GeolocalizacaoServico } from '../components/servicos/geolocalizacaoServico';
 import { BotaoAdicionaAvaliacaoComponent } from '../components/botao-adiciona-avaliacao/botao-adiciona-avaliacao';
 import { AvaliacaoModalPage } from '../pages/avaliacao-modal/avaliacao-modal';
 
@@ -35,6 +37,8 @@ import { AvaliacaoModalPage } from '../pages/avaliacao-modal/avaliacao-modal';
     StatusBar,
     SplashScreen,
     AvaliacaoServico,
+    EmpresaServico,
+    GeolocalizacaoServico,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
