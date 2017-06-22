@@ -15,5 +15,6 @@ export class HomePage {
     public geolocalizacaoServico: GeolocalizacaoServico
   ) {
     this.geolocalizacaoServico.ativarEspiao();
+    this.geolocalizacaoServico.sondarLocais();
   }
 }

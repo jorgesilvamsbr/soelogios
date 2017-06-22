@@ -13,7 +13,7 @@
 </ion-header>
 
 <ion-content>
-  <ion-item>
+  <ion-item *ngIf="locais.lenght > 0">
      <ion-label>Locais</ion-label>
       <ion-select [(ngModel)]="locais[0].name">
         <ion-option *ngFor="let local of locais" [value]="local.id">{{local.name}}</ion-option>
