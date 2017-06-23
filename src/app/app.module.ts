@@ -14,6 +14,8 @@ import { GeolocalizacaoServico } from '../components/servicos/geolocalizacaoServ
 import { BotaoAdicionaAvaliacaoComponent } from '../components/botao-adiciona-avaliacao/botao-adiciona-avaliacao';
 import { AvaliacaoModalPage } from '../pages/avaliacao-modal/avaliacao-modal';
 import { LoadingUtil } from '../components/util/loadingUtil';
+import { MenuComponent } from '../components/menu/menu';
+import { Camera, CameraOptions } from '@ionic-native/camera';
 
 
 @NgModule({
@@ -23,6 +25,7 @@ import { LoadingUtil } from '../components/util/loadingUtil';
     AvaliacoesComponent,
     BotaoAdicionaAvaliacaoComponent,
     AvaliacaoModalPage,
+    MenuComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,6 +45,8 @@ import { LoadingUtil } from '../components/util/loadingUtil';
     EmpresaServico,
     GeolocalizacaoServico,
     LoadingUtil,
+    MenuComponent,
+    Camera,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

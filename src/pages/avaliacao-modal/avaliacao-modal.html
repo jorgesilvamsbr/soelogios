@@ -14,10 +14,14 @@
 
 <ion-content>
   <ion-item>
-     <ion-label>Locais</ion-label>
-      <ion-select [(ngModel)]="empresaSelecionada">
-        <ion-option *ngFor="let local of locais" [value]="local">{{local.name}}</ion-option>
-      </ion-select>
+    <ion-label>Locais</ion-label>
+    <ion-select [(ngModel)]="empresaSelecionada">
+      <ion-option *ngFor="let local of locais" [value]="local">{{local.name}}</ion-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item *ngIf="base64Image">
+    <img [src]="base64Image" *ngIf="base64Image" />
   </ion-item>
 
   <ion-item>
@@ -25,14 +29,15 @@
     <ion-textarea [(ngModel)]="avaliacao.descricao"></ion-textarea>
   </ion-item>
 
-  <ion-grid>
     <ion-row>
-      <ion-col col-auto>
+      <ion-col col-12 col-sm>
         <button ion-button color="secundary" (click)="fechar()" outline>desistir</button>
       </ion-col>
-      <ion-col col-auto>
+      <ion-col col-12 col-sm>
         <button ion-button color="primary" (click)="adicionaAvaliacao()">avaliar</button>
       </ion-col>
+      <ion-col col-12 col-sm>
+        <button ion-button color="primary" (click)="obterFoto()"><ion-icon name="camera"></ion-icon></button>
+      </ion-col>
     </ion-row>
-  </ion-grid>
 </ion-content>
