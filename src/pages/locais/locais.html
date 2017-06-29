@@ -1,11 +1,20 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title text-center>
+      Locais Próximos
+    </ion-title>
+  </ion-navbar>
+</ion-header>
 <ion-content class="list-locais">
-  <ion-list>
-    <ion-item *ngFor="let local of locais" (click)="selecionar(local)">
+  <ion-list inset>
+    <button ion-item *ngFor="let local of locais" (click)="selecionar(local)">
+
       <ion-avatar item-start>
         <img src="{{local.icon}}">
       </ion-avatar>
       <h2>{{local.name}}</h2>
       <p>{{local.vicinity}}</p>
-    </ion-item>
+
+    </button>
   </ion-list>
 </ion-content>

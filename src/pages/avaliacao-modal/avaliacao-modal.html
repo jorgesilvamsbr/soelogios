@@ -11,7 +11,7 @@
 </ion-header>
 
 <ion-content>
-  <ion-fab top left edge>
+  <ion-fab top right>
     <button ion-fab mini color="secondary" (click)="obterFoto()"><ion-icon name="camera"></ion-icon></button>
   </ion-fab>
 
@@ -21,7 +21,7 @@
 
   <ion-item no-lines>
     <ion-label floating>Qual sua opinião sobre este lugar?</ion-label>
-    <ion-textarea required [(ngModel)]="avaliacao.descricao"></ion-textarea>
+    <ion-textarea autoresize [(ngModel)]="avaliacao.descricao"></ion-textarea>
   </ion-item>
 
   <ion-item no-lines>

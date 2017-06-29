@@ -13,11 +13,10 @@ export class LocaisPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.locais = this.navParams.get("locais");
-    console.log(this.locais);
   }
 
   selecionar(local){
+    AvaliacaoModalPage.localSelecionado = local;
     this.navCtrl.pop();
-    this.navCtrl.push(AvaliacaoModalPage, {localSelecionado: local});
   }
 }

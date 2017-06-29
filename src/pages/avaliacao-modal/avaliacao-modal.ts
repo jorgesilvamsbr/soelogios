@@ -14,6 +14,7 @@ import { LocaisPage } from '../locais/locais';
 export class AvaliacaoModalPage {
   private locais: any;
   private avaliacao = { descricao: '', foto: '' };
+  public static localSelecionado: any;
   private empresaSelecionada: any;
   public foto: string;
 
@@ -25,26 +26,25 @@ export class AvaliacaoModalPage {
   }
 
   constructor(public viewCtrl: ViewController,
-              private avaliacaoServico: AvaliacaoServico,
-              private geolocalizacaoServico: GeolocalizacaoServico,
-              private loadingUtil: LoadingUtil,
-              private navCtrl: NavController,
-              private camera: Camera,
-              private app: App,
-              private navParams: NavParams,
+    private avaliacaoServico: AvaliacaoServico,
+    private geolocalizacaoServico: GeolocalizacaoServico,
+    private loadingUtil: LoadingUtil,
+    private navCtrl: NavController,
+    private camera: Camera,
+    private app: App,
+    private navParams: NavParams,
   ) {
     this.locais = this.geolocalizacaoServico.obterLocais();
     this.empresaSelecionada = this.locais[1];
   }
 
-  ionViewDidEnter(){
-    let localSelecionado = this.navParams.get("localSelecionado");
-    if(localSelecionado){
-      this.empresaSelecionada = localSelecionado;
+  ionViewDidEnter() {
+    if (AvaliacaoModalPage.localSelecionado) {
+      this.empresaSelecionada = AvaliacaoModalPage.localSelecionado;
     }
   }
 
-  public obterLocaisDaRegiaoAtual(){
+  public obterLocaisDaRegiaoAtual() {
     this.locais = this.geolocalizacaoServico.obterLocaisDaRegiaoAtual();
   }
 
@@ -69,9 +69,8 @@ export class AvaliacaoModalPage {
     this.viewCtrl.dismiss();
   }
 
-  public alterarLocal(){
-    this.navCtrl.pop();
-    this.navCtrl.push(LocaisPage, {locais: this.locais});
+  public alterarLocal() {
+    this.navCtrl.push(LocaisPage, { locais: this.locais });
   }
 
   private criarAvaliacao() {

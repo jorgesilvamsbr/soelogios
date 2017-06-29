@@ -10,7 +10,6 @@ import { AvaliacaoServico } from '../components/servicos/avaliacaoServico';
 import { EmpresaServico } from '../components/servicos/empresaServico';
 import { GeolocalizacaoServico } from '../components/servicos/geolocalizacaoServico';
 import { LoadingUtil } from '../components/util/loadingUtil';
-import { MenuComponent } from '../components/menu/menu';
 
 import { MyApp } from './app.component';
 import { AvaliacaoModalPage } from '../pages/avaliacao-modal/avaliacao-modal';
@@ -23,7 +22,6 @@ import { LocaisPage } from '../pages/locais/locais';
     MyApp,
     HomePage,
     AvaliacaoModalPage,
-    MenuComponent,
     LocaisPage,
   ],
   imports: [
@@ -45,7 +43,6 @@ import { LocaisPage } from '../pages/locais/locais';
     EmpresaServico,
     GeolocalizacaoServico,
     LoadingUtil,
-    MenuComponent,
     Camera,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
