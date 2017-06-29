@@ -11,7 +11,47 @@
 
 <menu></menu>
 <ion-content>
-  <avaliacoes></avaliacoes>
+  
+  <ion-card *ngFor="let avaliacao of avaliacoes">
+
+  <div style="position: relative">
+    <img src="https://consultoradealimentos.com.br/wp-content/uploads/2016/10/austin-taco-food-truck-fort-collins1.jpg">
+    <ion-fab left top>
+      <button ion-fab (click)="iniciarNavegacaoAteLocal(avaliacao)"><ion-icon name="pin"></ion-icon></button>
+    </ion-fab>
+  </div>
+
+  <ion-item>
+    <ion-avatar item-start>
+      <img src="https://scontent.fcgr1-1.fna.fbcdn.net/v/t1.0-1/p160x160/13267736_1072426699483594_8589231699411749167_n.jpg?oh=b2451f9d0241fe904f6f35729aa78678&oe=59D7D571">
+    </ion-avatar>
+    <h3 ion-text text-sm style="font-size: 13px !important;"><b>{{avaliacao.nomeDoUsuario}}</b></h3>
+    <h2 ion-text color="primary">{{avaliacao.nomeDaEmpresa}}</h2>
+    <p><b>{{avaliacao.enderecoCompletoDaEmpresa}}</b></p>
+  </ion-item>
+
+  <ion-card-content>
+    <p>{{avaliacao.descricao}}</p>
+  </ion-card-content>
+
+  <ion-row>
+    <ion-col>
+      <button ion-button icon-left clear small>
+        <ion-icon name="thumbs-up" ></ion-icon>
+        <div>{{avaliacao.curtidas}} Likes</div>
+      </button>
+    </ion-col>
+    <ion-col>
+      <button ion-button icon-left clear small>
+      <ion-icon name="text"></ion-icon>
+      1 Comentários
+    </button>
+    </ion-col>
+  </ion-row>
+</ion-card>
+
 </ion-content>
 
-<botao-adiciona-avaliacao></botao-adiciona-avaliacao>
+<ion-fab bottom right>
+  <button ion-fab color="second" (click)="abrirModalAdicionaAvaliacao()"><ion-icon name="md-thumbs-up" color="light"></ion-icon></button>
+</ion-fab>

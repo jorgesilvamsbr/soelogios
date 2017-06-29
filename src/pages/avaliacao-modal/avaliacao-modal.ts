@@ -21,16 +21,19 @@ export class AvaliacaoModalPage {
     mediaType: this.camera.MediaType.PICTURE
   }
 
-  constructor(public viewCtrl: ViewController, private avaliacaoServico: AvaliacaoServico, private geolocalizacaoServico: GeolocalizacaoServico,
-    private loadingUtil: LoadingUtil, private navCtrl: NavController, private camera: Camera, private app: App
+  constructor(public viewCtrl: ViewController,
+              private avaliacaoServico: AvaliacaoServico,
+              private geolocalizacaoServico: GeolocalizacaoServico,
+              private loadingUtil: LoadingUtil,
+              private navCtrl: NavController,
+              private camera: Camera,
+              private app: App
   ) {
     this.locais = this.geolocalizacaoServico.obterLocais();
     this.empresaSelecionada = this.locais[1];
+    console.log(this.empresaSelecionada);
   }
 
-  ionViewDidEnter(){
-    console.log("Estou na pagina da avaliacao modal");
-  }
   public obterLocaisDaRegiaoAtual(){
     this.locais = this.geolocalizacaoServico.obterLocaisDaRegiaoAtual();
   }
