@@ -1,0 +1,11 @@
+<ion-content class="list-locais">
+  <ion-list>
+    <ion-item *ngFor="let local of locais" (click)="selecionar(local)">
+      <ion-avatar item-start>
+        <img src="{{local.icon}}">
+      </ion-avatar>
+      <h2>{{local.name}}</h2>
+      <p>{{local.vicinity}}</p>
+    </ion-item>
+  </ion-list>
+</ion-content>

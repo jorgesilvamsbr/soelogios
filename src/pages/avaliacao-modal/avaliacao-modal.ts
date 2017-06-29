@@ -1,9 +1,12 @@
+import { Camera, CameraOptions } from '@ionic-native/camera';
 import { Component, Inject } from '@angular/core';
-import { App, ViewController, NavController } from 'ionic-angular';
+import { App, ViewController, NavController, NavParams } from 'ionic-angular';
+
 import { GeolocalizacaoServico } from '../../components/servicos/geolocalizacaoServico';
 import { LoadingUtil } from '../../components/util/loadingUtil';
-import { Camera, CameraOptions } from '@ionic-native/camera';
 import { AvaliacaoServico } from '../../components/servicos/avaliacaoServico';
+
+import { LocaisPage } from '../locais/locais';
 
 @Component({
   templateUrl: 'avaliacao-modal.html',
@@ -27,11 +30,18 @@ export class AvaliacaoModalPage {
               private loadingUtil: LoadingUtil,
               private navCtrl: NavController,
               private camera: Camera,
-              private app: App
+              private app: App,
+              private navParams: NavParams,
   ) {
     this.locais = this.geolocalizacaoServico.obterLocais();
     this.empresaSelecionada = this.locais[1];
-    console.log(this.empresaSelecionada);
+  }
+
+  ionViewDidEnter(){
+    let localSelecionado = this.navParams.get("localSelecionado");
+    if(localSelecionado){
+      this.empresaSelecionada = localSelecionado;
+    }
   }
 
   public obterLocaisDaRegiaoAtual(){
@@ -59,9 +69,15 @@ export class AvaliacaoModalPage {
     this.viewCtrl.dismiss();
   }
 
+  public alterarLocal(){
+    this.navCtrl.pop();
+    this.navCtrl.push(LocaisPage, {locais: this.locais});
+  }
+
   private criarAvaliacao() {
     let avaliacaoRequest = {
       id: "",
+      imagem: this.avaliacao.foto,
       descricao: this.avaliacao.descricao,
       avaliacao: "ELOGIO",
       usuarioRequest: {
