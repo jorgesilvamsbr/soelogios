@@ -9,7 +9,6 @@ import { Camera } from '@ionic-native/camera';
 import { AvaliacaoServico } from '../components/servicos/avaliacaoServico';
 import { EmpresaServico } from '../components/servicos/empresaServico';
 import { GeolocalizacaoServico } from '../components/servicos/geolocalizacaoServico';
-import { BotaoAdicionaAvaliacaoComponent } from '../components/botao-adiciona-avaliacao/botao-adiciona-avaliacao';
 import { LoadingUtil } from '../components/util/loadingUtil';
 import { MenuComponent } from '../components/menu/menu';
 
@@ -23,7 +22,6 @@ import { LocaisPage } from '../pages/locais/locais';
   declarations: [
     MyApp,
     HomePage,
-    BotaoAdicionaAvaliacaoComponent,
     AvaliacaoModalPage,
     MenuComponent,
     LocaisPage,

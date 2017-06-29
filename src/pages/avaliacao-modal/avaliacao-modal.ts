@@ -1,5 +1,5 @@
 import { Camera, CameraOptions } from '@ionic-native/camera';
-import { Component, Inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { App, ViewController, NavController, NavParams } from 'ionic-angular';
 
 import { GeolocalizacaoServico } from '../../components/servicos/geolocalizacaoServico';
