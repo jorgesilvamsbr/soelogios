@@ -11,12 +11,12 @@
 </ion-header>
 
 <ion-content>
+  <ion-fab top left edge>
+    <button ion-fab mini color="secondary" (click)="obterFoto()"><ion-icon name="camera"></ion-icon></button>
+  </ion-fab>
+
   <ion-item *ngIf="foto" no-lines>
     <img [src]="foto" />
-  </ion-item>
-  
-  <ion-item no-lines>
-    <button ion-button item-start icon-only color="primary" (click)="obterFoto()" outline round block><ion-icon name="camera"></ion-icon></button>
   </ion-item>
 
   <ion-item no-lines>
@@ -30,7 +30,7 @@
         <button ion-button block item-end color="primary" (click)="fechar()" outline round>desistir</button>
       </ion-col>
       <ion-col>
-        <button ion-button block item-end color="primary" (click)="adicionaAvaliacao()" round>avaliar</button>
+        <button ion-button block item-end color="primary" (click)="adicionaAvaliacao()" round>elogiar</button>
       </ion-col>
     </ion-row>
   </ion-item>
