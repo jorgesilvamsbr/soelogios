@@ -1,14 +1,12 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Avaliação
-    </ion-title>
-    <ion-buttons start>
-      <button ion-button (click)="fechar()">
-        <span ion-text color="primary" showWhen="ios">Cancel</span>
-        <ion-icon name="md-close" showWhen="android,windows"></ion-icon>
-      </button>
-    </ion-buttons>
+  <ion-toolbar color="primary">
+    <ion-item color="primary" no-lines>
+      <ion-avatar item-start>
+        <img src="https://scontent.fcgr1-1.fna.fbcdn.net/v/t1.0-1/p160x160/13267736_1072426699483594_8589231699411749167_n.jpg?oh=b2451f9d0241fe904f6f35729aa78678&oe=59D7D571">
+      </ion-avatar>
+      <h1 ion-text text-center color="light" *ngIf="empresaSelecionada"><b>{{empresaSelecionada.name}}</b></h1>
+      <button ion-button color="secondary" full round><ion-icon name="pin" color="danger"></ion-icon>&nbsp;&nbsp;Alterar localização</button>
+    </ion-item>
   </ion-toolbar>
 </ion-header>
 
@@ -20,24 +18,27 @@
     </ion-select>
   </ion-item>
 
-  <ion-item *ngIf="base64Image">
-    <img [src]="base64Image" *ngIf="base64Image" />
+  <ion-item *ngIf="foto" no-lines>
+    <img [src]="foto" />
+  </ion-item>
+  
+  <ion-item no-lines>
+    <button ion-button item-start icon-only color="primary" (click)="obterFoto()" outline round block><ion-icon name="camera"></ion-icon></button>
   </ion-item>
 
-  <ion-item>
-    <ion-label floating>Digite aqui a descrição de sua avaliação</ion-label>
-    <ion-textarea [(ngModel)]="avaliacao.descricao"></ion-textarea>
+  <ion-item no-lines>
+    <ion-label floating>Qual sua opinião sobre este lugar?</ion-label>
+    <ion-textarea required [(ngModel)]="avaliacao.descricao"></ion-textarea>
   </ion-item>
 
+  <ion-item no-lines>
     <ion-row>
-      <ion-col col-12 col-sm>
-        <button ion-button color="secundary" (click)="fechar()" outline>desistir</button>
+      <ion-col>
+        <button ion-button block item-end color="primary" (click)="fechar()" outline round>desistir</button>
       </ion-col>
-      <ion-col col-12 col-sm>
-        <button ion-button color="primary" (click)="adicionaAvaliacao()">avaliar</button>
-      </ion-col>
-      <ion-col col-12 col-sm>
-        <button ion-button color="primary" (click)="obterFoto()"><ion-icon name="camera"></ion-icon></button>
+      <ion-col>
+        <button ion-button block item-end color="primary" (click)="adicionaAvaliacao()" round>avaliar</button>
       </ion-col>
     </ion-row>
+  </ion-item>
 </ion-content>

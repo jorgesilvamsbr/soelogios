@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, IonicPage } from 'ionic-angular';
 
 import { GeolocalizacaoServico } from '../../components/servicos/geolocalizacaoServico';
 import { MenuComponent } from '../../components/menu/menu';

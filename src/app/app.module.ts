@@ -7,25 +7,25 @@ import { HttpModule } from '@angular/http';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { AvaliacoesComponent } from '../components/avaliacoes/avaliacoes';
 import { AvaliacaoServico } from '../components/servicos/avaliacaoServico';
 import { EmpresaServico } from '../components/servicos/empresaServico';
 import { GeolocalizacaoServico } from '../components/servicos/geolocalizacaoServico';
 import { BotaoAdicionaAvaliacaoComponent } from '../components/botao-adiciona-avaliacao/botao-adiciona-avaliacao';
 import { AvaliacaoModalPage } from '../pages/avaliacao-modal/avaliacao-modal';
+import { AvaliacoesPage } from '../pages/avaliacoes/avaliacoes';
 import { LoadingUtil } from '../components/util/loadingUtil';
 import { MenuComponent } from '../components/menu/menu';
-import { Camera, CameraOptions } from '@ionic-native/camera';
+import { Camera } from '@ionic-native/camera';
 
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    AvaliacoesComponent,
     BotaoAdicionaAvaliacaoComponent,
     AvaliacaoModalPage,
     MenuComponent,
+    AvaliacoesPage,
   ],
   imports: [
     BrowserModule,
@@ -36,7 +36,7 @@ import { Camera, CameraOptions } from '@ionic-native/camera';
   entryComponents: [
     MyApp,
     HomePage,
-    AvaliacaoModalPage
+    AvaliacaoModalPage,
   ],
   providers: [
     StatusBar,

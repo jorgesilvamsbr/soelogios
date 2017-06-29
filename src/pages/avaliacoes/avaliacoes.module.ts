@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { IonicModule } from 'ionic-angular';
-import { AvaliacoesComponent } from './avaliacoes';
+import { AvaliacoesPage } from './avaliacoes';
 
 @NgModule({
   declarations: [
-    AvaliacoesComponent,
+    AvaliacoesPage,
   ],
   imports: [
     IonicModule,
   ],
   exports: [
-    AvaliacoesComponent
+    AvaliacoesPage
   ]
 })
-export class AvaliacoesComponentModule {}
+export class AvaliacoesPageModule {}

@@ -3,7 +3,6 @@ import { ModalController, NavController } from 'ionic-angular';
 
 import { AvaliacaoModalPage } from '../../pages/avaliacao-modal/avaliacao-modal';
 import { HomePage } from '../../pages/home/home';
-import { AvaliacoesComponent } from '../../components/avaliacoes/avaliacoes';
 
 @Component({
   selector: 'botao-adiciona-avaliacao',
@@ -18,9 +17,6 @@ export class BotaoAdicionaAvaliacaoComponent {
 
   abrirModalAdicionaAvaliacao() {
     let modal = this.modalController.create(AvaliacaoModalPage);
-    modal.onDidDismiss(() => {
-      AvaliacoesComponent;
-    });
     modal.present();
   }
 }

@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
-import { ViewController, NavController } from 'ionic-angular';
-import { AvaliacaoServico } from '../../components/servicos/avaliacaoServico';
+import { Component, Inject } from '@angular/core';
+import { App, ViewController, NavController } from 'ionic-angular';
 import { GeolocalizacaoServico } from '../../components/servicos/geolocalizacaoServico';
 import { LoadingUtil } from '../../components/util/loadingUtil';
 import { Camera, CameraOptions } from '@ionic-native/camera';
+import { AvaliacaoServico } from '../../components/servicos/avaliacaoServico';
 
 @Component({
   templateUrl: 'avaliacao-modal.html',
@@ -11,42 +11,48 @@ import { Camera, CameraOptions } from '@ionic-native/camera';
 export class AvaliacaoModalPage {
   private locais: any;
   private avaliacao = { descricao: '', foto: '' };
-  private empresaSelecionada: any = {};
-  public base64Image: string;
+  private empresaSelecionada: any;
+  public foto: string;
+
   opicoesCamera: CameraOptions = {
-    quality: 100,
+    quality: 60,
     destinationType: this.camera.DestinationType.DATA_URL,
     encodingType: this.camera.EncodingType.JPEG,
     mediaType: this.camera.MediaType.PICTURE
   }
 
-  constructor(
-    public viewCtrl: ViewController,
-    private avaliacaoServico: AvaliacaoServico,
-    private geolocalizacaoServico: GeolocalizacaoServico,
-    private loadingUtil: LoadingUtil,
-    private navCtrl: NavController,
-    private camera: Camera,
+  constructor(public viewCtrl: ViewController, private avaliacaoServico: AvaliacaoServico, private geolocalizacaoServico: GeolocalizacaoServico,
+    private loadingUtil: LoadingUtil, private navCtrl: NavController, private camera: Camera, private app: App
   ) {
     this.locais = this.geolocalizacaoServico.obterLocais();
+    this.empresaSelecionada = this.locais[1];
   }
 
-  obterFoto() {
+  ionViewDidEnter(){
+    console.log("Estou na pagina da avaliacao modal");
+  }
+  public obterLocaisDaRegiaoAtual(){
+    this.locais = this.geolocalizacaoServico.obterLocaisDaRegiaoAtual();
+  }
+
+  public obterFoto() {
     this.camera.getPicture(this.opicoesCamera).then((imageData) => {
-      this.base64Image = 'data:image/jpeg;base64,' + imageData;
-      this.avaliacao.foto = this.base64Image;
+      this.foto = 'data:image/jpeg;base64,' + imageData;
+      this.avaliacao.foto = this.foto;
+      console.log(this.foto);
     }, (err) => {
+      console.log(err);
     });
   }
 
-  adicionaAvaliacao() {
+  public adicionaAvaliacao() {
     this.loadingUtil.ativarLoading("Seu elogio esta sendo enviado");
     this.avaliacaoServico.adicionar(this.criarAvaliacao());
     this.loadingUtil.fecharLoading();
     this.fechar();
   }
 
-  fechar() {
+  public fechar() {
     this.viewCtrl.dismiss();
   }
 
