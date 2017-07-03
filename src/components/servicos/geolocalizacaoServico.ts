@@ -39,10 +39,14 @@ export class GeolocalizacaoServico {
     obterLocaisDaRegiaoAtual(){
         var locaisAtuais;
         this.loadingUtil.ativarLoading("Buscando locais...");
+        console.log(this.urlGoogleApi + "&location=" + GeolocalizacaoServico.latitude + "," + GeolocalizacaoServico.longitude);
         Geolocation.getCurrentPosition(this.opcoes).then(posicao => {
             GeolocalizacaoServico.latitude = posicao.coords.latitude;
             GeolocalizacaoServico.longitude = posicao.coords.longitude;
             locaisAtuais = this.obterLocais();
+            console.log('Localizacao:');
+            console.log(GeolocalizacaoServico.latitude);
+            console.log(GeolocalizacaoServico.longitude);
             this.loadingUtil.fecharLoading();
         });
         return locaisAtuais;

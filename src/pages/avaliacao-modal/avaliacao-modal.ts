@@ -34,8 +34,8 @@ export class AvaliacaoModalPage {
     private app: App,
     private navParams: NavParams,
   ) {
-    this.locais = this.geolocalizacaoServico.obterLocais();
-    this.empresaSelecionada = this.locais[1];
+    this.locais = this.geolocalizacaoServico.obterLocaisDaRegiaoAtual();
+    this.empresaSelecionada = this.locais ? this.locais[1] : {};
   }
 
   ionViewDidEnter() {

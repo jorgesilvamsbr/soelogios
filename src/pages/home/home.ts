@@ -31,12 +31,13 @@ export class HomePage {
     this.navCtrl.push(AvaliacaoModalPage);
   }
 
-    public obterUltimasAvaliacoes() {
+  public obterUltimasAvaliacoes() {
     this.loadingUtil.ativarLoading("Buscando últimos elogios");
     this.avaliacaoServico.getAvaliacoes().subscribe(avaliacoes => {
-        this.avaliacoes = avaliacoes;
-        this.loadingUtil.fecharLoading();
-      }, error => { console.error('Erro: ' + error)});
+      this.avaliacoes = avaliacoes;
+      console.log(avaliacoes);
+      this.loadingUtil.fecharLoading();
+    }, error => { console.error('Erro: ' + error) });
   }
 
   public iniciarNavegacaoAteLocal(avaliacao) {
@@ -45,5 +46,13 @@ export class HomePage {
       endereco: avaliacao.enderecoCompletoDaEmpresa,
     }
     this.geolocalizacaoServico.navegarAte(destino);
+  }
+
+  public atualizarPagina(eventoRefreshed){
+    this.obterUltimasAvaliacoes();
+
+    setTimeout(()=>{
+      eventoRefreshed.complete();
+    }, 2000);
   }
 }
