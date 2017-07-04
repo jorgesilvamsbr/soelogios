@@ -6,10 +6,10 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content>
+<ion-content fullscreen>
 
   <ion-refresher (ionRefresh)="atualizarPagina($event)">
-    <ion-refresher-content refreshingSpinner="crescent" refreshingText="">
+    <ion-refresher-content color="primary" refreshingSpinner="crescent" refreshingText="">
     </ion-refresher-content>
   </ion-refresher>
 
@@ -19,7 +19,7 @@
       <img *ngIf="!avaliacao.imagem" src="https://planoseoportunidades.files.wordpress.com/2016/01/icone_verde.png?w=547">
       <img *ngIf="avaliacao.imagem" src="{{avaliacao.imagem}}">
       <ion-fab left top>
-        <button ion-fab (click)="iniciarNavegacaoAteLocal(avaliacao)"><ion-icon name="pin"></ion-icon></button>
+        <button ion-fab (click)="iniciarNavegacaoAteLocal(avaliacao)"><ion-icon name="pin" color="third"></ion-icon></button>
       </ion-fab>
     </div>
 
@@ -55,5 +55,5 @@
 </ion-content>
 
 <ion-fab bottom right>
-  <button ion-fab color="second" (click)="abrirModalAdicionaAvaliacao()" large><ion-icon name="md-thumbs-up" color="light"></ion-icon></button>
+  <button ion-fab color="primary" (click)="abrirModalAdicionaAvaliacao()" large><ion-icon name="md-thumbs-up" color="third"></ion-icon></button>
 </ion-fab>

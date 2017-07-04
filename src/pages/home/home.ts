@@ -35,7 +35,6 @@ export class HomePage {
     this.loadingUtil.ativarLoading("Buscando últimos elogios");
     this.avaliacaoServico.getAvaliacoes().subscribe(avaliacoes => {
       this.avaliacoes = avaliacoes;
-      console.log(avaliacoes);
       this.loadingUtil.fecharLoading();
     }, error => { console.error('Erro: ' + error) });
   }

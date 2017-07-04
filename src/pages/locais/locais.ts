@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { AvaliacaoModalPage } from '../avaliacao-modal/avaliacao-modal';
+import { GeolocalizacaoServico } from '../../components/servicos/geolocalizacaoServico';
 
 @IonicPage()
 @Component({
@@ -11,12 +12,22 @@ import { AvaliacaoModalPage } from '../avaliacao-modal/avaliacao-modal';
 export class LocaisPage {
   private locais: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController,
+    public navParams: NavParams,
+    private geolocalizacaoServico: GeolocalizacaoServico) {
     this.locais = this.navParams.get("locais");
   }
 
-  selecionar(local){
+  selecionar(local) {
     AvaliacaoModalPage.localSelecionado = local;
     this.navCtrl.pop();
+  }
+
+  atualizarLocais(eventoRefreshed) {
+    this.locais = this.geolocalizacaoServico.obterLocaisDaRegiaoAtual();
+
+    setTimeout(() => {
+      eventoRefreshed.complete();
+    }, 2000);
   }
 }

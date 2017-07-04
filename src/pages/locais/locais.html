@@ -6,6 +6,12 @@
   </ion-navbar>
 </ion-header>
 <ion-content class="list-locais">
+  
+  <ion-refresher (ionRefresh)="atualizarLocais($event)">
+    <ion-refresher-content color="primary" refreshingSpinner="crescent" refreshingText="">
+    </ion-refresher-content>
+  </ion-refresher>
+
   <ion-list inset>
     <button ion-item *ngFor="let local of locais" (click)="selecionar(local)">
 

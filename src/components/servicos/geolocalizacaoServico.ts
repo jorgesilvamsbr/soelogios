@@ -23,8 +23,8 @@ export class GeolocalizacaoServico {
         private loadingUtil: LoadingUtil,
         private platform: Platform,
     ) {
-        this.chaveGoogleApi = "AIzaSyCal15CvfoASAG1OeSo4gJFsUeaJIxwTP0";
-        this.urlGoogleApi = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?language=pt-BR&radius=150&key=" + this.chaveGoogleApi;
+        this.chaveGoogleApi = "AIzaSyB09ez3C-YuSVrrTPjIfsiNuUcGOvZkc3s";
+        this.urlGoogleApi = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?language=pt-BR&radius=100&key=" + this.chaveGoogleApi;
         this.ativarEspiao();
     }
 
@@ -32,14 +32,12 @@ export class GeolocalizacaoServico {
         Geolocation.watchPosition(this.opcoes).subscribe(posicao => {
             GeolocalizacaoServico.latitude = posicao.coords.latitude;
             GeolocalizacaoServico.longitude = posicao.coords.longitude;
-            this.obterLocais();
         });
     }
 
     obterLocaisDaRegiaoAtual(){
-        var locaisAtuais;
+        let locaisAtuais;
         this.loadingUtil.ativarLoading("Buscando locais...");
-        console.log(this.urlGoogleApi + "&location=" + GeolocalizacaoServico.latitude + "," + GeolocalizacaoServico.longitude);
         Geolocation.getCurrentPosition(this.opcoes).then(posicao => {
             GeolocalizacaoServico.latitude = posicao.coords.latitude;
             GeolocalizacaoServico.longitude = posicao.coords.longitude;
