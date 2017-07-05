@@ -34,28 +34,15 @@ export class GeolocalizacaoServico {
             GeolocalizacaoServico.longitude = posicao.coords.longitude;
         });
     }
-
-    obterLocaisDaRegiaoAtual(){
-        let locaisAtuais;
-        this.loadingUtil.ativarLoading("Buscando locais...");
-        Geolocation.getCurrentPosition(this.opcoes).then(posicao => {
-            GeolocalizacaoServico.latitude = posicao.coords.latitude;
-            GeolocalizacaoServico.longitude = posicao.coords.longitude;
-            locaisAtuais = this.obterLocais();
-            console.log('Localizacao:');
-            console.log(GeolocalizacaoServico.latitude);
-            console.log(GeolocalizacaoServico.longitude);
-            this.loadingUtil.fecharLoading();
-        });
-        return locaisAtuais;
-    }
-
+    
     obterLocais() {
+        this.loadingUtil.ativarLoading("Buscando locais...");
         this.http
             .get(this.urlGoogleApi + "&location=" + GeolocalizacaoServico.latitude + "," + GeolocalizacaoServico.longitude)
             .map(response => response.json())
             .subscribe(data => {
                 this.locais = data.results;
+                this.loadingUtil.fecharLoading();
             });
         return this.locais;
     }

@@ -1,12 +1,4 @@
-<ion-header>
-  <ion-navbar color="primary">
-    <ion-title text-center>
-      <img src="../../assets/img/logo.png" style="height:40px;">
-    </ion-title>
-  </ion-navbar>
-</ion-header>
-
-<ion-content fullscreen>
+<ion-content>
 
   <ion-refresher (ionRefresh)="atualizarPagina($event)">
     <ion-refresher-content color="primary" refreshingSpinner="crescent" refreshingText="">
@@ -16,7 +8,7 @@
   <ion-card *ngFor="let avaliacao of avaliacoes">
 
     <div style="position: relative">
-      <img *ngIf="!avaliacao.imagem" src="https://planoseoportunidades.files.wordpress.com/2016/01/icone_verde.png?w=547">
+      <img *ngIf="!avaliacao.imagem" src="http://www.redebiroska.com.br/rede-biroska/imagens-y/informacoes/almoco-kilo-centro-sao-paulo-01.jpg">
       <img *ngIf="avaliacao.imagem" src="{{avaliacao.imagem}}">
       <ion-fab left top>
         <button ion-fab (click)="iniciarNavegacaoAteLocal(avaliacao)"><ion-icon name="pin" color="third"></ion-icon></button>
@@ -32,7 +24,7 @@
       <p><b>{{avaliacao.enderecoCompletoDaEmpresa}}</b></p>
     </ion-item>
 
-    <ion-card-content>
+    <ion-card-content color="secondary">
       <p>{{avaliacao.descricao}}</p>
     </ion-card-content>
 

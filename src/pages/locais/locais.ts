@@ -24,8 +24,8 @@ export class LocaisPage {
   }
 
   atualizarLocais(eventoRefreshed) {
-    this.locais = this.geolocalizacaoServico.obterLocaisDaRegiaoAtual();
-
+    this.locais = this.geolocalizacaoServico.obterLocais();
+    console.log(this.locais);
     setTimeout(() => {
       eventoRefreshed.complete();
     }, 2000);
