@@ -22,9 +22,6 @@ export class HomePage {
     private avaliacaoServico: AvaliacaoServico,
     private loadingUtil: LoadingUtil,
   ) {
-    let locais;
-    locais = this.geolocalizacaoServico.obterLocais();
-    AvaliacaoModalPage.localSelecionado = locais[1];
   }
 
   ionViewDidEnter() {
