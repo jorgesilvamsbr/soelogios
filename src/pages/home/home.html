@@ -15,7 +15,7 @@
       <h2 ion-text color="third"><b>{{avaliacao.nomeDaEmpresa}}</b></h2>
       <p style="color:#b36f42;"><b>{{avaliacao.enderecoCompletoDaEmpresa}}</b></p>
       <ion-fab right top >
-        <button ion-fab mini  class="avaliacao-botao-de-navegacao" (click)="iniciarNavegacaoAteLocal(avaliacao)" color="primary"><ion-icon name="pin" color="third"></ion-icon></button>
+        <button ion-fab mini  class="avaliacao-botao-de-navegacao" (click)="iniciarNavegacaoAteLocal(avaliacao)" color="third"><ion-icon name="pin" color="secondary"></ion-icon></button>
       </ion-fab>
     </ion-item>
 
@@ -28,8 +28,8 @@
     <ion-row>
       <ion-col>
         <button ion-button icon-left clear small>
-        <ion-icon name="thumbs-up" ></ion-icon>
-        <div>{{avaliacao.curtidas}} Gostou</div>
+        <ion-icon name="heart-outline" ></ion-icon>
+        <div>{{avaliacao.curtidas}}</div>
       </button>
       </ion-col>
       <ion-col>
