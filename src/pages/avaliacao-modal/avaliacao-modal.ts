@@ -33,13 +33,12 @@ export class AvaliacaoModalPage {
     private camera: Camera,
     private app: App,
     private navParams: NavParams,
-  ) { }
+  ) {
+    this.locais = this.geolocalizacaoServico.obterLocais();
+    this.empresaSelecionada = this.locais[1];
+  }
 
   ionViewDidEnter() {
-    this.locais = this.geolocalizacaoServico.obterLocais();
-    console.log(this.locais);
-    this.empresaSelecionada = this.locais[1];
-    
     if (AvaliacaoModalPage.localSelecionado) {
       this.empresaSelecionada = AvaliacaoModalPage.localSelecionado;
     }
