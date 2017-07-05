@@ -22,6 +22,7 @@ export class HomePage {
     private avaliacaoServico: AvaliacaoServico,
     private loadingUtil: LoadingUtil,
   ) {
+    this.geolocalizacaoServico.ativarEspiao();
   }
 
   ionViewDidEnter() {
