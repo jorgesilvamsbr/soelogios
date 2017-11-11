@@ -14,11 +14,12 @@ import { LocaisPage } from '../locais/locais';
 export class AvaliacaoModalPage {
   private locais: any;
   private avaliacao = { descricao: '', foto: '' };
-  public static localSelecionado: any;
-  private empresaSelecionada: any;
   public foto: string;
+  public static localSelecionado: any;
+  public static primeiroLocalSelecionado: any;
+  private empresaSelecionada: any;
 
-  opicoesCamera: CameraOptions = {
+  opcoesCamera: CameraOptions = {
     quality: 60,
     destinationType: this.camera.DestinationType.DATA_URL,
     encodingType: this.camera.EncodingType.JPEG,
@@ -34,7 +35,7 @@ export class AvaliacaoModalPage {
     private app: App,
     private navParams: NavParams,
   ) {
-    this.locais = this.geolocalizacaoServico.obterLocais();
+    this.locais = this.navParams.get("locaisObtidos");
     this.empresaSelecionada = this.locais[1];
   }
 
@@ -45,10 +46,9 @@ export class AvaliacaoModalPage {
   }
 
   public obterFoto() {
-    this.camera.getPicture(this.opicoesCamera).then((imageData) => {
+    this.camera.getPicture(this.opcoesCamera).then((imageData) => {
       this.foto = 'data:image/jpeg;base64,' + imageData;
       this.avaliacao.foto = this.foto;
-      console.log(this.foto);
     }, (err) => {
       console.log(err);
     });

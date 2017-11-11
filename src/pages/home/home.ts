@@ -12,6 +12,7 @@ import { LoadingUtil } from '../../components/util/loadingUtil';
 })
 export class HomePage {
   avaliacoes = [];
+  private locaisObtidos;
 
   constructor(
     public navCtrl: NavController,
@@ -21,16 +22,17 @@ export class HomePage {
     public viewController: ViewController,
     private avaliacaoServico: AvaliacaoServico,
     private loadingUtil: LoadingUtil,
-  ) {
-    this.geolocalizacaoServico.ativarEspiao();
-  }
+  ) { }
 
   ionViewDidEnter() {
     this.obterUltimasAvaliacoes();
+    this.geolocalizacaoServico.ativarEspiao().then(()=>{
+      this.locaisObtidos = this.geolocalizacaoServico.obterLocais();
+    });
   }
 
   public abrirModalAdicionaAvaliacao() {
-    this.navCtrl.push(AvaliacaoModalPage);
+    this.navCtrl.push(AvaliacaoModalPage, { locaisObtidos:  this.locaisObtidos });
   }
 
   public obterUltimasAvaliacoes() {
@@ -38,7 +40,10 @@ export class HomePage {
     this.avaliacaoServico.getAvaliacoes().subscribe(avaliacoes => {
       this.avaliacoes = avaliacoes;
       this.loadingUtil.fecharLoading();
-    }, error => { console.error('Erro: ' + error) });
+    }, error => {
+      this.loadingUtil.fecharLoading();
+      console.error('Erro: ' + error);
+    });
   }
 
   public iniciarNavegacaoAteLocal(avaliacao) {

@@ -14,7 +14,7 @@ export class GeolocalizacaoServico {
     locais = [];
 
     opcoes: {} = {
-        timeout: 10000,
+        timeout: 8000,
         enableHighAccuaracy: true
     };
 
@@ -25,25 +25,30 @@ export class GeolocalizacaoServico {
     ) {
         this.chaveGoogleApi = "AIzaSyB09ez3C-YuSVrrTPjIfsiNuUcGOvZkc3s";
         this.urlGoogleApi = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?language=pt-BR&radius=100&key=" + this.chaveGoogleApi;
-        this.ativarEspiao();
     }
 
     ativarEspiao() {
-        Geolocation.watchPosition(this.opcoes).subscribe(posicao => {
-            GeolocalizacaoServico.latitude = posicao.coords.latitude;
-            GeolocalizacaoServico.longitude = posicao.coords.longitude;
+        return new Promise((resolve, reject) => {Geolocation.watchPosition(this.opcoes).subscribe(posicao => {
+                GeolocalizacaoServico.latitude = posicao.coords.latitude;
+                GeolocalizacaoServico.longitude = posicao.coords.longitude;
+                resolve(true);
+            });
         });
     }
     
     obterLocais() {
         this.loadingUtil.ativarLoading("Buscando locais...");
         this.http
-            .get(this.urlGoogleApi + "&location=" + GeolocalizacaoServico.latitude + "," + GeolocalizacaoServico.longitude)
-            .map(response => response.json())
-            .subscribe(data => {
-                this.locais = data.results;
+        .get(this.urlGoogleApi + "&location=" + GeolocalizacaoServico.latitude + "," + GeolocalizacaoServico.longitude)
+        .map(response => response.json())
+        .subscribe(
+            sucesso => {
+                this.locais = sucesso.results;
                 this.loadingUtil.fecharLoading();
-            });
+            },
+            erro =>{
+                this.loadingUtil.fecharLoading();
+        });
         return this.locais;
     }
 
@@ -52,14 +57,7 @@ export class GeolocalizacaoServico {
         this.platform.ready().then(() => {
             this.loadingUtil.ativarLoading("Preparando rota...");
             Geolocation.getCurrentPosition().then((position) => {
-                // ios
-                if (this.platform.is('ios')) {
-                    window.open('maps://?q=' + destino.nome + '&saddr=' + position.coords.latitude + ',' + position.coords.longitude + '&daddr=' + destino.endereco, '_system');
-                };
-                // android
-                if (this.platform.is('android')) {
-                    window.open('geo://' + position.coords.latitude + ',' + position.coords.longitude + '?q=' + destino.endereco , '_system');
-                };
+                window.open('geo://' + position.coords.latitude + ',' + position.coords.longitude + '?q=' + destino.endereco , '_system');
                 this.loadingUtil.fecharLoading();
             });
         });
