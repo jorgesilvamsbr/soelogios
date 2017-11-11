@@ -28,10 +28,14 @@ export class GeolocalizacaoServico {
     }
 
     ativarEspiao() {
-        return new Promise((resolve, reject) => {Geolocation.watchPosition(this.opcoes).subscribe(posicao => {
+        return new Promise((resolve, reject) => {
+            Geolocation.watchPosition(this.opcoes).subscribe(posicao => {
                 GeolocalizacaoServico.latitude = posicao.coords.latitude;
                 GeolocalizacaoServico.longitude = posicao.coords.longitude;
                 resolve(true);
+            },
+            erro => {
+                reject(erro);
             });
         });
     }
