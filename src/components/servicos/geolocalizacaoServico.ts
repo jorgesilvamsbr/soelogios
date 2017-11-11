@@ -41,19 +41,20 @@ export class GeolocalizacaoServico {
     }
     
     obterLocais() {
-        this.loadingUtil.ativarLoading("Buscando locais...");
         this.http
         .get(this.urlGoogleApi + "&location=" + GeolocalizacaoServico.latitude + "," + GeolocalizacaoServico.longitude)
         .map(response => response.json())
-        .subscribe(
-            sucesso => {
-                this.locais = sucesso.results;
-                this.loadingUtil.fecharLoading();
-            },
-            erro =>{
-                this.loadingUtil.fecharLoading();
+        .subscribe(sucesso => {
+            this.locais = sucesso.results;
+            
         });
         return this.locais;
+    }
+
+    obterLocaisParaAvaliacao(){
+        return this.http
+            .get(this.urlGoogleApi + "&location=" + GeolocalizacaoServico.latitude + "," + GeolocalizacaoServico.longitude)
+            .map(response => response.json());
     }
 
     //Documentação: https://gist.github.com/Bloggerschmidt/aec7ed3dae3262d975d6d53009ef6aa8

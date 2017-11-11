@@ -12,7 +12,7 @@ import { LoadingUtil } from '../../components/util/loadingUtil';
 })
 export class HomePage {
   avaliacoes = [];
-  private locaisObtidos;
+  locaisObtidos = [];
 
   constructor(
     public navCtrl: NavController,
@@ -22,19 +22,25 @@ export class HomePage {
     public viewController: ViewController,
     private avaliacaoServico: AvaliacaoServico,
     private loadingUtil: LoadingUtil,
-  ) { }
-
-  ionViewDidEnter() {
-    this.obterUltimasAvaliacoes();
+  ) {
     this.geolocalizacaoServico.ativarEspiao().then(()=>{
-      this.locaisObtidos = this.geolocalizacaoServico.obterLocais();
+      this.geolocalizacaoServico.obterLocaisParaAvaliacao().subscribe(locais =>{
+            this.locaisObtidos = locais.results;
+        });
     });
   }
 
-  public abrirModalAdicionaAvaliacao() {
-    this.navCtrl.push(AvaliacaoModalPage, { locaisObtidos:  this.locaisObtidos });
+  ionViewDidEnter() {
+    this.geolocalizacaoServico.obterLocaisParaAvaliacao().subscribe(locais =>{
+      this.locaisObtidos = locais.results;
+    });
+    this.obterUltimasAvaliacoes();
   }
-
+  
+  public abrirModalAdicionaAvaliacao() {
+    this.navCtrl.push(AvaliacaoModalPage, {locaisObtidos: this.locaisObtidos});
+  }
+  
   public obterUltimasAvaliacoes() {
     this.loadingUtil.ativarLoading("Buscando últimos elogios");
     this.avaliacaoServico.getAvaliacoes().subscribe(avaliacoes => {
@@ -45,7 +51,7 @@ export class HomePage {
       console.error('Erro: ' + error);
     });
   }
-
+  
   public iniciarNavegacaoAteLocal(avaliacao) {
     let destino = {
       nome: avaliacao.nomeDaEmpresa,

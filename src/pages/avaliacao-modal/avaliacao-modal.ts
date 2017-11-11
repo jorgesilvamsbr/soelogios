@@ -36,6 +36,8 @@ export class AvaliacaoModalPage {
     private navParams: NavParams,
   ) {
     this.locais = this.navParams.get("locaisObtidos");
+    console.log("dentro");
+    console.log(this.locais);
     this.empresaSelecionada = this.locais[1];
   }
 
