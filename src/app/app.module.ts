@@ -14,7 +14,10 @@ import { LoadingUtil } from '../components/util/loadingUtil';
 import { MyApp } from './app.component';
 import { AvaliacaoModalPage } from '../pages/avaliacao-modal/avaliacao-modal';
 import { HomePage } from '../pages/home/home';
+import { LoginPage } from '../pages/login/login';
 import { LocaisPage } from '../pages/locais/locais';
+import { NativeStorage } from '@ionic-native/native-storage';
+import { Facebook } from '@ionic-native/facebook';
 
 
 @NgModule({
@@ -23,6 +26,7 @@ import { LocaisPage } from '../pages/locais/locais';
     HomePage,
     AvaliacaoModalPage,
     LocaisPage,
+    LoginPage,
   ],
   imports: [
     BrowserModule,
@@ -35,6 +39,7 @@ import { LocaisPage } from '../pages/locais/locais';
     HomePage,
     LocaisPage,
     AvaliacaoModalPage,
+    LoginPage,
   ],
   providers: [
     StatusBar,
@@ -44,6 +49,8 @@ import { LocaisPage } from '../pages/locais/locais';
     GeolocalizacaoServico,
     LoadingUtil,
     Camera,
+    NativeStorage,
+    Facebook,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
